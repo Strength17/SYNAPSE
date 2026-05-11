@@ -151,6 +151,7 @@ and serves a mobile-first PWA from Express.
 | P-07-T09 | modals.js | ✅ | |
 | P-07-T10 | reconnect flow | ✅ | |
 
+
 ## PHASE 8 — WIRING
 
 | ID | Task | Status | Notes |

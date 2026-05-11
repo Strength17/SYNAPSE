@@ -1,6 +1,7 @@
 import { store } from '../store.js';
 import { components } from './components.js';
 import { api } from '../api.js';
+import { modals } from './modals.js';
 
 /**
  * Controller for the Inbox Tab
@@ -35,21 +36,16 @@ export const inbox = {
         store.set('syncStatus', 'syncing');
         await api.syncEmails();
         store.set('syncStatus', 'idle');
+        this.render();
       };
     }
 
-    // Delegation for email clicks
-    document.getElementById('email-list').onclick = (e) => {
+    document.getElementById('email-list').onclick = async (e) => {
       const card = e.target.closest('.email-card');
       if (card) {
-        this.openDetail(card.dataset.id);
+        const email = await api.getEmail(card.dataset.id);
+        modals.openEmailDetail(email);
       }
     };
-  },
-
-  async openDetail(id) {
-    const email = await api.getEmail(id);
-    console.log('Opening email:', email.subject);
-    // Modal logic would go here (P-07-T09)
   }
 };
