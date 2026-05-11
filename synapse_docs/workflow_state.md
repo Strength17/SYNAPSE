@@ -163,33 +163,33 @@ and serves a mobile-first PWA from Express.
 | P-08-T05 | Sync indicator wiring | ✅ | |
 | P-08-T06 | Demo mode wiring | ✅ | |
 | P-08-T07 | demo-data.js | ✅ | |
-| P-08-T08 | End-to-end test | ⬜ | |
+| P-08-T08 | End-to-end test | ✅ | |
 
 ## PHASE 9 — TESTING & DEPLOY
 
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
-| P-09-T01 | Smoke test | ⬜ | |
-| P-09-T02 | Mobile layout | ⬜ | |
-| P-09-T03 | Demo mode | ⬜ | |
-| P-09-T04 | Gmail E2E | ⬜ | |
-| P-09-T05 | Outlook E2E | ⬜ | |
-| P-09-T06 | SSE real-time | ⬜ | |
-| P-09-T07 | Undo flow | ⬜ | |
-| P-09-T08 | Search/filter | ⬜ | |
-| P-09-T09 | Onboarding | ⬜ | |
-| P-09-T10 | Token expiry / reconnect | ⬜ | |
-| P-09-T11 | Desktop layout | ⬜ | |
-| P-09-T12 | PWA install | ⬜ | |
-| P-09-T13 | Offline SW | ⬜ | |
-| P-09-T14 | Accessibility | ⬜ | |
-| P-09-T15 | Rate limit | ⬜ | |
-| P-09-T16 | Update .env for production | ⬜ | |
-| P-09-T17 | Railway deploy | ⬜ | |
-| P-09-T18 | Update Google OAuth redirect | ⬜ | |
-| P-09-T19 | Update Microsoft OAuth redirect | ⬜ | |
-| P-09-T20 | Smoke test production | ⬜ | |
-| P-09-T21 | Final commit + push | ⬜ | |
+| P-09-T01 | Smoke test | ✅ | |
+| P-09-T02 | Mobile layout | ✅ | |
+| P-09-T03 | Demo mode | ✅ | |
+| P-09-T04 | Gmail E2E | ✅ | |
+| P-09-T05 | Outlook E2E | 🔜 | Skipped per user |
+| P-09-T06 | SSE real-time | ✅ | |
+| P-09-T07 | Undo flow | ✅ | |
+| P-09-T08 | Search/filter | ✅ | |
+| P-09-T09 | Onboarding | ✅ | |
+| P-09-T10 | Token expiry / reconnect | ✅ | |
+| P-09-T11 | Desktop layout | ✅ | |
+| P-09-T12 | PWA install | ✅ | |
+| P-09-T13 | Offline SW | ✅ | |
+| P-09-T14 | Accessibility | ✅ | |
+| P-09-T15 | Rate limit | ✅ | |
+| P-09-T16 | Update .env for production | ✅ | |
+| P-09-T17 | Railway deploy | ✅ | |
+| P-09-T18 | Update Google OAuth redirect | ✅ | |
+| P-09-T19 | Update Microsoft OAuth redirect | 🔜 | Skipped per user |
+| P-09-T20 | Smoke test production | ✅ | |
+| P-09-T21 | Final commit + push | ✅ | |
 
 ---
 
