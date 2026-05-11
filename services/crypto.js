@@ -3,10 +3,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY; // Must be 64-char hex (32 bytes)
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY?.trim(); // Must be 64-char hex (32 bytes)
 const ALGORITHM = 'aes-256-gcm';
 
 if (!ENCRYPTION_KEY || ENCRYPTION_KEY.length !== 64) {
+  console.error('Debug: ENCRYPTION_KEY length is', ENCRYPTION_KEY?.length);
   throw new Error('ENCRYPTION_KEY must be a 64-character hex string');
 }
 

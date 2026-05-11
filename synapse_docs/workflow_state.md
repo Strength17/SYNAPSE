@@ -129,27 +129,27 @@ and serves a mobile-first PWA from Express.
 | P-06-T04 | styles.css — nav + sidebar | ✅ | |
 | P-06-T05 | styles.css — cards | ✅ | |
 | P-06-T06 | styles.css — screens (loading/onboarding/modal) | ✅ | |
-| P-06-T07 | manifest.json | ⬜ | |
-| P-06-T08 | sw.js | ⬜ | |
-| P-06-T09 | store.js | ⬜ | |
-| P-06-T10 | router.js | ⬜ | |
-| P-06-T11 | api.js | ⬜ | |
-| P-06-T12 | index.html | ⬜ | |
+| P-06-T07 | manifest.json | ✅ | |
+| P-06-T08 | sw.js | ✅ | |
+| P-06-T09 | store.js | ✅ | |
+| P-06-T10 | router.js | ✅ | |
+| P-06-T11 | api.js | ✅ | |
+| P-06-T12 | index.html | ✅ | |
 
 ## PHASE 7 — FRONTEND UI
 
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
-| P-07-T01 | toast.js | ⬜ | |
-| P-07-T02 | components.js | ⬜ | |
-| P-07-T03 | loading.js | ⬜ | |
-| P-07-T04 | onboarding.js | ⬜ | OAuth buttons only; NO API key input |
-| P-07-T05 | inbox.js | ⬜ | |
-| P-07-T06 | actions-tab.js | ⬜ | |
-| P-07-T07 | done.js | ⬜ | |
-| P-07-T08 | settings.js | ⬜ | |
-| P-07-T09 | modals.js | ⬜ | |
-| P-07-T10 | reconnect flow | ⬜ | |
+| P-07-T01 | toast.js | ✅ | |
+| P-07-T02 | components.js | ✅ | |
+| P-07-T03 | loading.js | ✅ | |
+| P-07-T04 | onboarding.js | ✅ | OAuth buttons only; NO API key input |
+| P-07-T05 | inbox.js | ✅ | |
+| P-07-T06 | actions-tab.js | ✅ | |
+| P-07-T07 | done.js | ✅ | |
+| P-07-T08 | settings.js | ✅ | |
+| P-07-T09 | modals.js | ✅ | |
+| P-07-T10 | reconnect flow | ✅ | |
 
 ## PHASE 8 — WIRING
 
