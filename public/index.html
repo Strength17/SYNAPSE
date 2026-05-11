@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1830">
+  <title>Synapse — Email Intelligence</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/logo.png">
+</head>
+<body>
+  <div id="app">
+    <header id="app-header" class="app-header">
+      <div class="header-left">
+        <img src="/logo.png" class="header-logo" alt="Synapse">
+        <span class="header-title" id="header-title">Inbox</span>
+      </div>
+      <div class="header-right">
+        <div class="sync-indicator" id="sync-indicator">
+          <span class="dot-idle" id="sync-dot"></span>
+          <span class="sync-label t-caption" id="sync-label">Last synced 2m ago</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="screen-container">
+      <!-- Screens injected here by UI controller -->
+    </main>
+
+    <nav id="bottom-nav" class="bottom-nav">
+      <button class="nav-item active" data-tab="inbox">
+        <span>Inbox</span>
+        <span class="nav-badge" id="badge-inbox"></span>
+      </button>
+      <button class="nav-item" data-tab="actions">
+        <span>Actions</span>
+        <span class="nav-badge" id="badge-actions"></span>
+      </button>
+      <button class="nav-item" data-tab="done">
+        <span>Done</span>
+      </button>
+      <button class="nav-item" data-tab="settings">
+        <span>Settings</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="modal-container"></div>
+  <div id="toast-container"></div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

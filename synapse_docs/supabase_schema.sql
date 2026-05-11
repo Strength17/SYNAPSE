@@ -5,23 +5,19 @@
 -- ─────────────────────────────────────────────────────────────────────────────
 
 -- ══════════════════════════════════════════════════════════════
--- USERS
--- Stores authenticated users and their encrypted OAuth tokens.
--- Tokens are encrypted server-side (AES-256-GCM) before insert.
+-- PROFILES — extends auth.users
 -- ══════════════════════════════════════════════════════════════
-CREATE TABLE IF NOT EXISTS users (
-  id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email               TEXT UNIQUE NOT NULL,
-  provider            TEXT NOT NULL CHECK (provider IN ('google', 'microsoft', 'demo')),
-  provider_id         TEXT,                           -- Google sub / Microsoft oid
+CREATE TABLE IF NOT EXISTS profiles (
+  id                  UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   display_name        TEXT,
   avatar_url          TEXT,
-  access_token_enc    TEXT,                           -- AES-256-GCM encrypted
-  refresh_token_enc   TEXT,                           -- AES-256-GCM encrypted
-  token_iv            TEXT,                           -- IV used for encryption
+  access_token_enc    TEXT,
+  refresh_token_enc   TEXT,
+  token_iv            TEXT,
+  token_tag           TEXT,
   token_expires_at    TIMESTAMPTZ,
   last_sync_at        TIMESTAMPTZ,
-  sync_cursor         TEXT,                           -- Gmail historyId or Outlook deltaToken
+  sync_cursor         TEXT,
   is_active           BOOLEAN NOT NULL DEFAULT true,
   settings            JSONB NOT NULL DEFAULT '{
     "syncInterval": 60,
@@ -33,9 +29,6 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_provider_id ON users(provider, provider_id);
-
 -- ══════════════════════════════════════════════════════════════
 -- EMAILS
 -- All emails fetched from the user's real inbox.
@@ -43,7 +36,7 @@ CREATE INDEX idx_users_provider_id ON users(provider, provider_id);
 -- ══════════════════════════════════════════════════════════════
 CREATE TABLE IF NOT EXISTS emails (
   id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id             UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id             UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   provider_email_id   TEXT NOT NULL,                  -- Gmail messageId or Outlook id
   subject             TEXT NOT NULL DEFAULT '(no subject)',
   sender_name         TEXT NOT NULL DEFAULT '',
@@ -80,7 +73,7 @@ CREATE INDEX idx_emails_unprocessed ON emails(user_id, is_processed) WHERE is_pr
 -- ══════════════════════════════════════════════════════════════
 CREATE TABLE IF NOT EXISTS actions (
   id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id             UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id             UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   email_id            UUID NOT NULL REFERENCES emails(id) ON DELETE CASCADE,
   detected            TEXT NOT NULL,                  -- "Project Launch Sync"
   action_label        TEXT NOT NULL,                  -- "Schedule Meeting"
@@ -108,7 +101,7 @@ CREATE INDEX idx_actions_urgency ON actions(user_id, urgency, created_at DESC);
 -- ══════════════════════════════════════════════════════════════
 CREATE TABLE IF NOT EXISTS done_log (
   id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id             UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id             UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   action_id           UUID REFERENCES actions(id) ON DELETE SET NULL,
   email_subject       TEXT NOT NULL,
   action_taken        TEXT NOT NULL,
@@ -127,7 +120,7 @@ CREATE INDEX idx_done_user ON done_log(user_id, completed_at DESC);
 -- ══════════════════════════════════════════════════════════════
 CREATE TABLE IF NOT EXISTS session_blacklist (
   jti         TEXT PRIMARY KEY,                       -- JWT ID claim
-  user_id     UUID REFERENCES users(id) ON DELETE CASCADE,
+  user_id     UUID REFERENCES profiles(id) ON DELETE CASCADE,
   expires_at  TIMESTAMPTZ NOT NULL,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -145,8 +138,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_users_updated
-  BEFORE UPDATE ON users
+CREATE TRIGGER trg_profiles_updated
+  BEFORE UPDATE ON profiles
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
 CREATE TRIGGER trg_actions_updated

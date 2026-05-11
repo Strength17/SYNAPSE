@@ -1,0 +1,31 @@
+{
+  "name": "Synapse — Email Intelligence",
+  "short_name": "Synapse",
+  "description": "Autonomous AI email action engine",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1830",
+  "theme_color": "#0d1830",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Actions",
+      "url": "/#actions"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}
