@@ -11,8 +11,7 @@ import userRoutes from './routes/user.js';
 import authRoutes from './routes/auth.js';
 import emailRoutes from './routes/emails.js';
 import actionRoutes from './routes/actions.js';
-
-// import streamRoutes from './routes/stream.js';
+import streamRoutes from './routes/stream.js';
 
 dotenv.config();
 
